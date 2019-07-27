@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    background-color: black;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.form {
+    
+}
+
+.inputField {
+
+}
+
+.inputField__input {
+    background-color: black;
+    width: 100%;
+    font-size: var(--font-size-md);
+    color: white;
+}
+
+.inputField__input_error {
+    background-color: red;
+}
+
+.inputField__message {
+
+}
+
+.inputField__message_error{
+    color: red;
+}

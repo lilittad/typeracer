@@ -1,0 +1,9 @@
+.race {
+
+}
+
+.race__text {
+    margin-bottom: var(--margin-md);
+    font-size: var(--font-size-sm);
+    min-height: 250px;
+}
