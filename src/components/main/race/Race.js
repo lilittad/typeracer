@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {getLetterStatus, getWordsFromText, getWordsPerMinute} from '../../../utils/utils';
+import {getLetterStatus, getWordsFromText, getWordsPerMinute, getCompletionPercent} from '../../../utils/helper';
 import TypingForm from './components/typing-form/TypingForm';
 import Timer from './components/timer/Timer';
 import Score from '../score/Score';
@@ -18,8 +18,9 @@ export default class Race extends React.Component{
         }
     }
     handleTypingComplete() {
-        const words = getWordsFromText(this.props.text);
-        const {wordIndex, score }= this.state;
+        const {text} = this.props;
+        const words = getWordsFromText(text);
+        const {wordIndex, score}= this.state;
         if (wordIndex + 1 < words.length ) {
             this.setState((state) => {
                 return {
@@ -30,7 +31,7 @@ export default class Race extends React.Component{
                 }
             });
         } else {
-            this.props.onCompleted(score);
+            this.props.onCompleted(score, getCompletionPercent(text, words.slice(0, wordIndex + 1), ''));
         }
     }
 
@@ -48,11 +49,14 @@ export default class Race extends React.Component{
     }
 
     handleTick(seconds, done) {
-        const words = getWordsFromText(this.props.text);
+        const {text} = this.props;
+        const words = getWordsFromText(text);
         this.setState((state) => {
-            const score = getWordsPerMinute(words.slice(0, state.wordIndex), state.inputValue, seconds);
+            const {inputValue} = state;
+            const enteredWords = words.slice(0, state.wordIndex);
+            const score = getWordsPerMinute(enteredWords, inputValue, seconds);
             if (done) {
-                this.props.onCompleted(score);
+                this.props.onCompleted(score, getCompletionPercent(text, enteredWords, inputValue));
             }
             return {
                 ...state,

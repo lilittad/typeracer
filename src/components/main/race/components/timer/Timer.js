@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
-import {formatSecondsToMMSS} from '../../../../../utils/utils';
+import {formatSecondsToMMSS} from '../../../../../utils/formatter';
 import {COUNT_DOWN_TIME} from '../../../../../configs/constants';
 
 export default function Timer(props) {

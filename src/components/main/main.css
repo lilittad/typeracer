@@ -27,3 +27,8 @@
     background-color: white; opacity: 0.5;
     min-height: 300px;
 }
+
+.completion-percent {
+    text-align: center;
+    font-size: var(--font-size-md);
+}

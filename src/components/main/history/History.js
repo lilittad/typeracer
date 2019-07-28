@@ -13,11 +13,13 @@ export default function History(props) {
                 <tr>
                     <th>UserName</th>
                     <th>Score(wpm)</th>
+                    <th>Completion(%)</th>
                 </tr>
                 {races.map((race, index) =>
                     <tr key={index}>
                         <th>{race.userName}</th>
                         <th>{race.score}</th>
+                        <th>{race.completionPercent}</th>
                     </tr>
                 )}
                 </tbody>

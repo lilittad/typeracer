@@ -8,11 +8,12 @@ class StorageService extends RequestService {
         return this.get('');
     }
 
-    async saveRace(userName, score) {
+    async saveRace(userName, score, completionPercent) {
         const races = await this.getRaces();
-        races.push({
+        races.unshift({
             userName,
-            score
+            score,
+            completionPercent
         });
        return this.put('', races);
     }
