@@ -11,9 +11,12 @@ body {
 }
 
 .inputField {
-
+    width: 100%;
 }
 
+.inputField__label {
+    font-size: var(--font-size-md);
+}
 .inputField__input {
     background-color: black;
     width: 100%;
@@ -31,4 +34,12 @@ body {
 
 .inputField__message_error{
     color: red;
+}
+
+.button {
+    min-height: 60px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: var(--font-size-md);
 }
