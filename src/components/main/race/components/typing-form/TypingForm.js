@@ -32,7 +32,6 @@ export default function TypingForm(props) {
                     value={inputValue}
                     onChange={(e) => handleInputChange(e)}
                 />
-                {!inputValid && <span className="inputField-message inputField__message_error">Wrong letter!!!Be careful next time</span>}
             </div>
         </form>
     );

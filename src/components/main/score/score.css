@@ -1,0 +1,16 @@
+.score {
+    text-align: center;
+    margin: var(--margin-md);
+}
+
+.score_primary {
+    font-size: var(--font-size-lg);
+}
+
+.score_secondary {
+    font-size: var(--font-size-md);
+}
+
+.score__info {
+    color: limegreen;
+}

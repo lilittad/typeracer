@@ -25,8 +25,13 @@ export const formatSecondsToMMSS = (value) => {
     return `${minutes}:${formattedSeconds}`;
 }
 
-export const getWordPerMinute = (words, seconds) => {
-    const entriesLength = words.join(' ').length;
+export const getWordsPerMinute = (words, letters, seconds) => {
+    if (!seconds) {
+        return 0;
+    }
+    const entriesLength = words.join(' ').length + letters.length;
     const minutes = seconds / 60;
+    console.log(words, letters, seconds, Math.floor((entriesLength/AVERAGE_WORD_LENGTH)/minutes));
+
     return Math.floor((entriesLength/AVERAGE_WORD_LENGTH)/minutes);
 }
