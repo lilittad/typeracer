@@ -1,13 +1,12 @@
 import React from 'react';
-
-import './race.css';
+import PropTypes from 'prop-types';
 
 import {getLetterStatus, getWordsFromText, getWordsPerMinute} from '../../../utils/utils';
 import TypingForm from './components/typing-form/TypingForm';
 import Timer from './components/timer/Timer';
 import Score from '../score/Score';
 
-
+import './race.css';
 
 export default class Race extends React.Component{
     constructor(props) {
@@ -91,4 +90,11 @@ export default class Race extends React.Component{
         )
     }
 }
+
+Race.propTypes = {
+    text: PropTypes.string.isRequired,
+    onCompleted: PropTypes.func.isRequired
+};
+
+
 

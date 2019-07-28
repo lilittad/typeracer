@@ -1,3 +1,23 @@
 .history {
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.history__title {
+    font-size: var(--font-size-md);
+}
+
+.history__table {
+    width: 100%;
+    margin-top: var(--margin-md);
+    padding-top: var(--padding-md);
+    border-top-width: 5px;
+    border-top-color: black;
+    border-top-style: solid;
+
+}
+
+.history__table tr {
+    width: 50%;
 }

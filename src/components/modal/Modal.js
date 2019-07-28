@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './modal.css';
 
-export default function Login(props) {
+export default function Modal(props) {
     if (!props.show) {
-        return null;
+        return '';
     }
     return (
         <div className="modal">
@@ -14,3 +15,11 @@ export default function Login(props) {
         </div>
     );
 }
+
+Modal.propTypes = {
+    show: PropTypes.bool,
+};
+
+Modal.defaultProps = {
+    mode: false
+};

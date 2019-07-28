@@ -1,17 +1,22 @@
 import RequestService from './RequestService';
-import {TYPING_API} from '../configs/constants';
+import {STORAGE_API} from '../configs/constants';
 
-class TypingService extends RequestService {
-    baseUrl = TYPING_API;
+class StorageService extends RequestService {
+    baseUrl = STORAGE_API;
 
-    getHistory() {
+    getRaces() {
         return this.get('');
     }
 
-    saveGame() {
-        return this.post('');
+    async saveRace(userName, score) {
+        const races = await this.getRaces();
+        races.push({
+            userName,
+            score
+        });
+       return this.put('', races);
     }
 
 }
 
-export default new TypingService();
+export default new StorageService();

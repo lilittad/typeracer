@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Race from './race/Race';
 import History from './history/History';
@@ -6,12 +7,13 @@ import Score from './score/Score';
 import Modal from '../modal/Modal';
 import LoginForm from './login-form/LoginForm';
 import typingService from '../../services/TypingService';
+import storageService from '../../services/StorageService';
 
 import './main.css';
 
 
 const GAME_STATUS = {
-    PENDIND: 0,
+    PENDING: 0,
     IN_PROGRESS: 1,
     FINISHED: 2
 
@@ -23,8 +25,9 @@ export default class Main extends React.Component{
             showModal: true,
             userName:'',
             raceText: '',
+            races:[],
             score: 0,
-            status: GAME_STATUS.PENDIND,
+            status: GAME_STATUS.PENDING,
         }
     }
 
@@ -42,12 +45,18 @@ export default class Main extends React.Component{
         }
     }
 
-    completeRace(score) {
+    async completeRace(score) {
         this.setState((state) => ({
                 ...state,
                 score,
                 raceText: '',
                 status: GAME_STATUS.FINISHED
+            })
+        );
+        const races = await storageService.saveRace(this.state.userName, score);
+        this.setState((state) => ({
+                ...state,
+                races
             })
         );
     }
@@ -60,11 +69,20 @@ export default class Main extends React.Component{
             })
         );
         this.props.onLogin(userName);
+        this.getRaces();
+    }
+
+    async getRaces() {
+        const races = await storageService.getRaces();
+        this.setState((state) => ({
+                ...state,
+                races
+            })
+        );
     }
 
     render() {
-        const {
-            raceText, status, score, showModal} = this.state;
+        const {raceText, races, status, score, showModal} = this.state;
         return (
             <div>
                 <main className="main">
@@ -78,7 +96,7 @@ export default class Main extends React.Component{
                             { status === GAME_STATUS.FINISHED && <Score score={score} mode="primary"/>}
                         </div>
                         <div className="content__item">
-                            <History text=''/>
+                            <History races={races}/>
                         </div>
                     </div>
                 </main>
@@ -87,3 +105,6 @@ export default class Main extends React.Component{
     }
 }
 
+Main.propTypes = {
+    onLogin: PropTypes.func.isRequired,
+};

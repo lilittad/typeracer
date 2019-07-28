@@ -31,7 +31,6 @@ export const getWordsPerMinute = (words, letters, seconds) => {
     }
     const entriesLength = words.join(' ').length + letters.length;
     const minutes = seconds / 60;
-    console.log(words, letters, seconds, Math.floor((entriesLength/AVERAGE_WORD_LENGTH)/minutes));
 
     return Math.floor((entriesLength/AVERAGE_WORD_LENGTH)/minutes);
 }

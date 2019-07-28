@@ -8,22 +8,31 @@ export default class RequestService {
         this.configs[key] = value;
     }
 
-    request(url, method = 'GET', params = {}) {
-        return axios({
-            ...this.configs,
-            method,
-            params,
-            url,
-        }).then(({ data }) => data);
+    request(url, method = 'GET', configs = {}) {
+        const options = {
+                ...this.configs,
+                ...configs,
+                method,
+                url,
+            };
+        return axios(options).then(({ data }) => data);
     }
 
     get(reqUrl, params) {
         const url = `${this.baseUrl}${reqUrl}`;
-        return this.request(url, 'GET', params);
+        const configs = {params};
+        return this.request(url, 'GET', configs);
     }
 
-    post(reqUrl) {
+    post(reqUrl, data) {
         const url = `${this.baseUrl}${reqUrl}`;
-        return this.request(url, 'POST');
+        const configs = {data};
+        return this.request(url, 'POST', configs);
+    }
+
+    put(reqUrl, data) {
+        const url = `${this.baseUrl}${reqUrl}`;
+        const configs = {data};
+        return this.request(url, 'PUT', configs);
     }
 }

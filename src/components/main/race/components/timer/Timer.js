@@ -18,7 +18,7 @@ export default function Timer(props) {
                 return done? 0 : seconds - 1;
             });
         }, 1000);
-        return () => clearInterval(interval);
+        return () => clearInterval(interval);// eslint-disable-next-line
     }, []);
 
     return (
